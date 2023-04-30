@@ -1,6 +1,7 @@
 package hu.nye.progkor.musiccatalog.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class DefaultSongService implements SongService {
     }
 
     @Override
-    public Song retrieveSongById(Long id) {
+    public Optional<Song> retrieveSongById(Long id) {
         return songRepository.getById(id);
     }
 

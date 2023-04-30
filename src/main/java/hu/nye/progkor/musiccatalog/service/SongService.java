@@ -1,6 +1,7 @@
 package hu.nye.progkor.musiccatalog.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import hu.nye.progkor.musiccatalog.data.model.Song;
 
@@ -21,9 +22,9 @@ public interface SongService {
      * Retrieves a song by its id.
      *
      * @param id the id of the song to retrieve
-     * @return the retrieved song
+     * @return the retrieved song or empty optional if it was not found
      */
-    Song retrieveSongById(Long id);
+    Optional<Song> retrieveSongById(Long id);
 
     /**
      * Retrieves all the songs in the catalog.

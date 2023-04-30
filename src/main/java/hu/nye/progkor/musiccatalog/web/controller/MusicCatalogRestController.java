@@ -1,8 +1,10 @@
 package hu.nye.progkor.musiccatalog.web.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,8 +38,10 @@ public class MusicCatalogRestController {
      * @return the song object
      */
     @GetMapping("/{id}")
-    public Song getSongById(@PathVariable Long id) {
-        return songService.retrieveSongById(id);
+    public ResponseEntity<Song> getSongById(@PathVariable Long id) {
+        Optional<Song> song = songService.retrieveSongById(id);
+        return song.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     /**

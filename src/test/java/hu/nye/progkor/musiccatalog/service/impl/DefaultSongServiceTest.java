@@ -4,10 +4,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoInteractions;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,13 +55,13 @@ class DefaultSongServiceTest {
     @Test
     void retrieveSongById() {
         // Given
-        given(songRepository.getById(DUMMY_SONG_ID)).willReturn(DUMMY_SONG);
+        given(songRepository.getById(DUMMY_SONG_ID)).willReturn(Optional.of(DUMMY_SONG));
 
         // When
-        final Song actual = underTest.retrieveSongById(DUMMY_SONG_ID);
+        final Optional<Song> actual = underTest.retrieveSongById(DUMMY_SONG_ID);
 
         // Then
-        assertThat(actual, equalTo(DUMMY_SONG));
+        assertThat(actual, equalTo(Optional.of(DUMMY_SONG)));
         verify(songRepository).getById(DUMMY_SONG_ID);
         verifyNoMoreInteractions(songRepository);
     }

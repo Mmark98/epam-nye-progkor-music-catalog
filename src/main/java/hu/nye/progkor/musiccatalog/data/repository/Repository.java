@@ -1,6 +1,7 @@
 package hu.nye.progkor.musiccatalog.data.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A generic interface for managing entities in a repository.
@@ -22,9 +23,9 @@ public interface Repository<T, I> {
      * Retrieves an entity by its identifier.
      *
      * @param id the identifier of the entity to retrieve
-     * @return the retrieved entity
+     * @return the retrieved entity or empty if it was not found
      */
-    T getById(I id);
+    Optional<T> getById(I id);
 
     /**
      * Retrieves all the entities in the repository.

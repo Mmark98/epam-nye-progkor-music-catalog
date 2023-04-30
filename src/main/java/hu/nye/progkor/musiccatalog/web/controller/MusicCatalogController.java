@@ -1,6 +1,7 @@
 package hu.nye.progkor.musiccatalog.web.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -37,9 +38,14 @@ public class MusicCatalogController {
      */
     @GetMapping("/{id}")
     public String getSongById(Model model, @PathVariable Long id) {
-        Song song = songService.retrieveSongById(id);
-        model.addAttribute("song", song);
-        return "music-catalog/edit";
+        Optional<Song> optionalSong = songService.retrieveSongById(id);
+        return optionalSong.map(song -> {
+            model.addAttribute("song", song);
+            return "music-catalog/edit";
+        }).orElseGet(() -> {
+            model.addAttribute("requestUri", "music-catalog/" + id);
+            return "music-catalog/notFound";
+        });
     }
 
     /**
