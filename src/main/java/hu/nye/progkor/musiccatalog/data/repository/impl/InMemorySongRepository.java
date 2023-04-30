@@ -8,7 +8,7 @@ import hu.nye.progkor.musiccatalog.data.model.Song;
 import hu.nye.progkor.musiccatalog.data.repository.Repository;
 
 /**
- * TODO.
+ * Map-based in-memory implementation of {@link Repository}.
  */
 @org.springframework.stereotype.Repository
 public class InMemorySongRepository implements Repository<Song, Long> {

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import hu.nye.progkor.musiccatalog.data.model.Song;
 import hu.nye.progkor.musiccatalog.service.SongService;
 
+/**
+ * Controller for the music catalog.
+ */
 @Controller
 @RequestMapping("/music-catalog")
 public class MusicCatalogController {
@@ -25,6 +28,13 @@ public class MusicCatalogController {
         this.songService = songService;
     }
 
+    /**
+     * Shows the song editor screen.
+     *
+     * @param model the model object to store attributes
+     * @param id the id of the song to retrieve
+     * @return the name of the edit view to render
+     */
     @GetMapping("/{id}")
     public String getSongById(Model model, @PathVariable Long id) {
         Song song = songService.retrieveSongById(id);
@@ -32,6 +42,12 @@ public class MusicCatalogController {
         return "music-catalog/edit";
     }
 
+    /**
+     * Shows the song list screen.
+     *
+     * @param model the model object to store attributes
+     * @return the name of the song list view to render
+     */
     @GetMapping
     public String getAllSongs(Model model) {
         List<Song> allSongs = songService.retrieveAllSongs();
@@ -39,11 +55,24 @@ public class MusicCatalogController {
         return "music-catalog/list";
     }
 
+    /**
+     * Shows the song creation screen.
+     *
+     * @return the name of the song creation view to render
+     */
     @GetMapping("/create")
-    public String createSong(Model model) {
+    public String createSong() {
         return "music-catalog/create";
     }
 
+    /**
+     * Creates a new song.
+     * Also navigates back to the editor screen.
+     *
+     * @param model the model object to store attributes
+     * @param song the song object to create
+     * @return the name of the edit view to render
+     */
     @PostMapping("/create")
     public String createSong(Model model, Song song) {
         Song newSong = songService.createSong(song);
@@ -51,6 +80,14 @@ public class MusicCatalogController {
         return "music-catalog/edit";
     }
 
+    /**
+     * Updates an existing song.
+     * Also navigates back to the editor screen.
+     *
+     * @param model the model object to store attributes
+     * @param song the song object to update
+     * @return the name of the edit view to render
+     */
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String updateSong(Model model, Song song) {
         Song updatedSong = songService.updateSong(song);
@@ -58,6 +95,14 @@ public class MusicCatalogController {
         return "music-catalog/edit";
     }
 
+    /**
+     * Deletes a song by ID.
+     * Also navigates back to the song list screen.
+     *
+     * @param model the model object to store attributes
+     * @param id the id of the song to delete
+     * @return the name of the song list view to render
+     */
     @GetMapping("/{id}/delete")
     public String deleteSongById(Model model, @PathVariable Long id) {
         songService.deleteSongById(id);

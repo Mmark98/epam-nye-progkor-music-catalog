@@ -66,21 +66,27 @@ public class Song {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
+        if (this == o) {
             return true;
-        if (o == null || getClass() != o.getClass())
+        }
+        if (o == null || getClass() != o.getClass()) {
             return false;
+        }
 
         Song song = (Song) o;
 
-        if (!Objects.equals(id, song.id))
+        if (!Objects.equals(id, song.id)) {
             return false;
-        if (!Objects.equals(title, song.title))
+        }
+        if (!Objects.equals(title, song.title)) {
             return false;
-        if (!Objects.equals(artist, song.artist))
+        }
+        if (!Objects.equals(artist, song.artist)) {
             return false;
-        if (!Objects.equals(album, song.album))
+        }
+        if (!Objects.equals(album, song.album)) {
             return false;
+        }
         return genre == song.genre;
     }
 
@@ -96,12 +102,12 @@ public class Song {
 
     @Override
     public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", artist='" + artist + '\'' +
-                ", album='" + album + '\'' +
-                ", genre=" + genre +
-                '}';
+        return "Song{"
+                + "id=" + id
+                + ", title='" + title + '\''
+                + ", artist='" + artist + '\''
+                + ", album='" + album + '\''
+                + ", genre=" + genre
+                + '}';
     }
 }

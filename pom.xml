@@ -141,7 +141,6 @@
 				<configuration>
 					<consoleOutput>true</consoleOutput>
 					<configLocation>google_checks.xml</configLocation>
-					<failOnViolation>false</failOnViolation>
 					<violationSeverity>warning</violationSeverity>
 					<violationIgnore>
 						Indentation,
@@ -152,6 +151,11 @@
 						JavadocPackage,
 						JavadocVariable
 					</violationIgnore>
+					<!-- Exclude model classes and the entry point class. -->
+					<excludes>
+						**/model/**/*,
+						**/MusicCatalogApplication.java
+					</excludes>
 				</configuration>
 				<executions>
 					<execution>

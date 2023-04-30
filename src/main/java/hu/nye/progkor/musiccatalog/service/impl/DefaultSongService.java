@@ -9,6 +9,9 @@ import hu.nye.progkor.musiccatalog.data.model.Song;
 import hu.nye.progkor.musiccatalog.data.repository.Repository;
 import hu.nye.progkor.musiccatalog.service.SongService;
 
+/**
+ * Default implementation of {@link SongService}.
+ */
 @Service
 public class DefaultSongService implements SongService {
 
