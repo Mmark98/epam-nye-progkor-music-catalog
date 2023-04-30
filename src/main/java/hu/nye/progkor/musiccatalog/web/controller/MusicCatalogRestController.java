@@ -1,4 +1,4 @@
-package hu.nye.progkor.musiccatalog.web;
+package hu.nye.progkor.musiccatalog.web.controller;
 
 import java.util.List;
 
