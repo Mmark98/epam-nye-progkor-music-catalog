@@ -53,7 +53,7 @@ class DefaultSongServiceTest {
     }
 
     @Test
-    void retrieveSongById() {
+    void retrieveSongByIdShouldDelegateToTheRepositoryAndReturnFoundSong() {
         // Given
         given(songRepository.getById(DUMMY_SONG_ID)).willReturn(Optional.of(DUMMY_SONG));
 
@@ -67,7 +67,7 @@ class DefaultSongServiceTest {
     }
 
     @Test
-    void retrieveAllSongs() {
+    void retrieveAllSongsShouldDelegateToTheRepositoryAndReturnAllFoundSongs() {
         // Given
         given(songRepository.getAll()).willReturn(List.of(DUMMY_SONG));
 
