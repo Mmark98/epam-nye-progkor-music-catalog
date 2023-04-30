@@ -3,12 +3,13 @@ package hu.nye.progkor.musiccatalog.data.repository.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import hu.nye.progkor.musiccatalog.data.model.Song;
 import hu.nye.progkor.musiccatalog.data.repository.Repository;
 
 /**
- * TODO.
+ * Map-based in-memory implementation of {@link Repository}.
  */
 @org.springframework.stereotype.Repository
 public class InMemorySongRepository implements Repository<Song, Long> {
@@ -24,8 +25,8 @@ public class InMemorySongRepository implements Repository<Song, Long> {
     }
 
     @Override
-    public Song getById(Long id) {
-        return STORAGE.get(id);
+    public Optional<Song> getById(Long id) {
+        return Optional.ofNullable(STORAGE.get(id));
     }
 
     @Override
