@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import hu.nye.progkor.musiccatalog.data.model.Song;
@@ -30,32 +29,32 @@ public class MusicCatalogController {
     public String getSongById(Model model, @PathVariable Long id) {
         Song song = songService.retrieveSongById(id);
         model.addAttribute("song", song);
-        return "edit";
+        return "music-catalog/edit";
     }
 
     @GetMapping
     public String getAllSongs(Model model) {
         List<Song> allSongs = songService.retrieveAllSongs();
         model.addAttribute("songs", allSongs);
-        return "list";
+        return "music-catalog/list";
     }
 
     @GetMapping("/create")
     public String createSong(Model model) {
-        return "create";
+        return "music-catalog/create";
     }
 
     @PostMapping("/create")
-    public String createSong(Model model, @RequestBody Song song) {
+    public String createSong(Model model, Song song) {
         Song newSong = songService.createSong(song);
         model.addAttribute("song", newSong);
-        return "edit";
+        return "music-catalog/edit";
     }
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String updateSong(Model model, @RequestBody Song song) {
+    public String updateSong(Model model, Song song) {
         Song updatedSong = songService.updateSong(song);
-        return "edit";
+        return "music-catalog/edit";
     }
 
     @GetMapping("/{id}/delete")
@@ -63,6 +62,6 @@ public class MusicCatalogController {
         songService.deleteSongById(id);
         List<Song> allSongs = songService.retrieveAllSongs();
         model.addAttribute("songs", allSongs);
-        return "list";
+        return "music-catalog/list";
     }
 }

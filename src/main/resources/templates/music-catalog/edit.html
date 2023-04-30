@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Zeneszám létrehozás</title>
+    <title>Product Creating form</title>
 
     <link rel="stylesheet"
           th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
@@ -16,49 +16,59 @@
 
 <div class="container">
 
-    <h3 class="pt-5">Zeneszám létrehozás</h3>
-
     <div class="row">
         <div class="col-md-4 mt-5">
             <form method="post"
-                  th:action="@{/create}">
+                  th:action="@{/music-catalog/update}">
                 <div class="form-group">
-                    <label for="name">Zeneszám létrehozás</label>
+                    <label for="name">Termék modósító adatlap</label>
+                </div>
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text"
+                           id="id"
+                           name="id"
+                           readonly
+                           class="form-control"
+                           th:value="${song.id}"/>
                 </div>
                 <div class="form-group">
                     <label for="title">Cím</label>
                     <input type="text"
                            id="title"
-                           th:name="title"
-                           class="form-control"/>
+                           name="title"
+                           class="form-control"
+                           th:value="${song.title}"/>
                 </div>
                 <div class="form-group">
                     <label for="artist">Előadó</label>
                     <input type="text"
                            id="artist"
-                           th:name="artist"
-                           class="form-control"/>
+                           name="artist"
+                           class="form-control"
+                           th:value="${song.artist}"/>
                 </div>
                 <div class="form-group">
                     <label for="album">Album</label>
                     <input type="text"
                            id="album"
-                           th:name="album"
-                           class="form-control"/>
+                           name="album"
+                           class="form-control"
+                           th:value="${song.album}"/>
                 </div>
                 <div class="form-group">
                     <label for="genre">Műfaj</label>
                     <input type="text"
                            id="genre"
-                           th:name="genre"
-                           class="form-control"/>
+                           name="genre"
+                           class="form-control"
+                           th:value="${song.genre}"/>
                 </div>
-
-                <button class="btn btn-primary pt-2"
-                        type="submit">Létrehoz
+                <button class="btn btn-primary"
+                        type="submit">Módosít
                 </button>
-                <a th:href="@{/list.html}"
-                   class="btn btn-secondary pt-2"
+                <a th:href="@{/music-catalog}"
+                   class="btn btn-secondary"
                    type="submit">Vissza a listához</a>
             </form>
         </div>

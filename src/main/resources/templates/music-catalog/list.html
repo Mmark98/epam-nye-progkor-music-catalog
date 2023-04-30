@@ -18,6 +18,10 @@
 
     <h3 class="pt-5">Zeneszámok listája</h3>
 
+    <a th:href="@{'/music-catalog/create'}"
+       type="button"
+       class="btn">Új hozzáadása</a>
+
     <table class="table table-striped pt-5">
         <caption>Zeneszámok listája</caption>
         <thread>
@@ -38,7 +42,7 @@
             <td th:text="${song.album}"></td>
             <td th:text="${song.genre}">
             <td>
-                <a th:href="@{'/music-catalog/edit.html'}"
+                <a th:href="@{'/music-catalog/' + ${song.id}}"
                    type="button"
                    class="btn btn-warning">Szerkesztés</a>
                 <a th:href="@{'/music-catalog/' + ${song.id} + '/delete'}"
