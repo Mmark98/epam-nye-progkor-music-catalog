@@ -54,6 +54,7 @@ public class MusicCatalogController {
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String updateSong(Model model, Song song) {
         Song updatedSong = songService.updateSong(song);
+        model.addAttribute("song", updatedSong);
         return "music-catalog/edit";
     }
 
